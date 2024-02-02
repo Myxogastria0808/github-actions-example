@@ -15,25 +15,40 @@ on:
     branches: [ "main" ]
   #明示的に走って！とボタンを押した時
   workflow_dispatch:
+  #上記の条件分岐を必要としない場合は、以下のようにする
+  #※mainブランチのみであることに注意
+  #push: [ "main" ]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+#一つのワークフローの中に含まれる一つ一つの一連の処理を定義する。
 jobs:
-  # This workflow contains a single job called "build"
+  #(ジョブ名):の中にそれぞれのジョブの設定、処理内容を書く。
+  #並列に処理される！
+  #build:というジョブ
   build:
-    # The type of runner that the job will run on
+    #どのような仮想環境でジョブの処理を動かすかを定義
+    #最新バージョンのubuntu環境を準備する。
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    #具体的な一つ一つの処理を書いていく。
+    #上から順に実行される！
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      #各処理を記述
+      #外部で定義された別のアクション
+      #自分自身のレポジトリのデータを読み込む
       - uses: actions/checkout@v3
 
-      # Runs a single command using the runners shell
+      #単一のスクリプトが走る
       - name: Run a one-line script
         run: echo Hello, world!
 
-      # Runs a set of commands using the runners shell
+       #複数のスクリプトが走る
       - name: Run a multi-line script
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+  hogehoge:
+    runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
+        - name: Unko
+          run: echo Unko!!!
