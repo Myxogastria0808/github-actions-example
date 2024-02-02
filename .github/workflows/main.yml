@@ -1,16 +1,19 @@
-# This is a basic workflow to help you get started with Actions
-
+#参考サイト
+#https://qiita.com/yu-ichiro/items/b50ceb0008edc3c0312e
+#ワークフローの名前
 name: CI
 
-# Controls when the workflow will run
+#どのタイミングでこのワークフローが走るかが定義されている。
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
+  #何かしらのコミットがGitHubに追加された時
   push:
+    #ただし、mainブランチのみ
     branches: [ "main" ]
+  #新しくプルリクエストが作成された時
   pull_request:
+    #ただし、mainブランチのみ
     branches: [ "main" ]
-
-  # Allows you to run this workflow manually from the Actions tab
+  #明示的に走って！とボタンを押した時
   workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
