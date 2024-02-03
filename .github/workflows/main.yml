@@ -53,3 +53,34 @@ jobs:
         - uses: actions/checkout@v3
         - name: Unko
           run: echo Unko!!!
+  #並列実行か順に実行するかを明示的に指定できる
+  start:
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@v3
+        - name: Start
+          run: echo Start!!!
+  run1:
+    runs-on: ubuntu-latest
+    #startの処理が終わったら、次に進む
+    needs: start
+    steps:
+        - uses: actions/checkout@v3
+        - name: Run1
+          run: echo Run1!!!
+  run2:
+    runs-on: ubuntu-latest
+    #startの処理が終わったら、次に進む
+    needs: start
+    steps:
+        - uses: actions/checkout@v3
+        - name: Run2
+          run: echo Run2!!!
+  end:
+    runs-on: ubuntu-latest
+    #run1とrun2の処理が終わったら、次に進む
+    needs: [run1, run2]
+    steps:
+        - uses: actions/checkout@v3
+        - name: End
+          run: echo End!!!
